@@ -13,8 +13,6 @@
 ![status](https://img.shields.io/badge/status-desenvolvimento-green)
 
 
-
-
 Assuntos abordados no desafio:
 
 - Tipos primitivos

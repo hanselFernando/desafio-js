@@ -18,123 +18,167 @@ function obterMaiorPreco(precos) {
         }
     }
     return maiorNumero;
-   /*   var max = Math.max(...lista);
-        return max; */
 }
-
 //console.log(">>>Menor preço: " + obterMenorPreco(precos));
 //console.log(">>>Maior preço: " + obterMaiorPreco(precos));
 
 var nomes = ["tiago", "Alexandre", "kamillA"];
-var nomesCapitalizados = [];
+
 
 function capitalizarNomes(nomes) {
-    for (let i = 0; i < nomes.length; i++) {
-        nomesCapitalizados.push(nomes[i][0].toUpperCase() + nomes[i].substring(1).toLowerCase());
-    }
-    console.log(nomesCapitalizados);
-}
+    let nomesCapitalizados = [];
 
-//capitalizarNomes(nomes);
+    for (let i = 0; i < nomes.length; i++) {
+        nomesCapitalizados.push(nomes[i].charAt(0).toUpperCase() + nomes[i].substring(1).toLowerCase());
+    }
+    return nomesCapitalizados;
+}
+//console.log(capitalizarNomes(nomes));
 
 var descontos = [0.15, 0.30];
-var valorDaCompra = 100;
+//var valorDaCompra = 100;
 
-function obterDescontoCategoria(categoria, valorDaCompra, desconto) {
-    if (categoria == 'infantil') {
-        valorDaCompra -= valorDaCompra * (descontos[0] + desconto);
+function obterDescontoCategoria(categoria) {
+    var categoriaCapitalizada = capitalizarNomes([categoria])[0];
+
+    if (categoriaCapitalizada == "Infantil") {
+        return 15;
     }
-    if (categoria == 'alimentação') {
-        valorDaCompra -= valorDaCompra * (descontos[1] + desconto);
+    else if (categoriaCapitalizada == "Alimentação") {
+        return 30;
     }
-    if (categoria != 'alimentação' && categoria != 'infantil') {
-        valorDaCompra -= valorDaCompra *  desconto;
+    else {
+        return 0;
     }
-    
-    console.log(`categorias: ${categoria}\nvalor da compra: ${valorDaCompra}`);
-    console.log();
 }
-
-//obterDescontoCategoria("alimentação", 100);
-var precos = [5, 7, 9, 50, 20];
-var produtosDentroDoOrcamento = [];
-var orcamento = 9;
+/* console.log( obterDescontoCategoria("infantil"));
+console.log( obterDescontoCategoria("Alimentação"));
+console.log( obterDescontoCategoria("A")); */
 
 function obterPrecosLimitadosAoOrcamento(orcamento, precos) {
+    let precosDentroDoOrcamento = [];
+
     for (let i = 0; i < precos.length; i++) {
         if (precos[i] <= orcamento) {
-            produtosDentroDoOrcamento.push(precos[i]);
+            precosDentroDoOrcamento.push(precos[i]);
         }
     }
-    console.log(produtosDentroDoOrcamento);
+    return precosDentroDoOrcamento;
 }
-
-//obterPrecosLimitadosAoOrcamento(orcamento, precos);
-
-var valorDoProduto = [10, 30, 5, 15];
-var total = 0;
+var precos = [5, 7, 9, 50, 20];
+var orcamento = 9;
+//console.log(obterPrecosLimitadosAoOrcamento(orcamento, precos));
 
 function calcularTotalDaCompra(valorDoProduto) {
+    let total = 0;
+
     for (let i = 0; i < valorDoProduto.length; i++) {   
         total += valorDoProduto[i];
     }
-    console.log(total);
+    return total;
 }
-
-//calcularTotalDaCompra(valorDoProduto);
+var valorDoProduto = [10, 30, 5, 15];
+//console.log(calcularTotalDaCompra(valorDoProduto));
 
 var precos = [10, 7, 8, 25, 8, 9, 100, 99];
 
 function obterMenorEMaiorPrecos(preco) {
-    var menorPreco = preco[0];
-    var maiorPreco = preco[0];
+    var menorPreco = obterMenorPreco(preco);
+    var maiorPreco = obterMaiorPreco(preco);
 
-    for (let i = 0; i < preco.length; i ++) {
-        if (preco[i] >= maiorPreco) {
-            maiorPreco = preco[i];
-        }
-        if (preco[i] <= menorPreco) {
-            menorPreco = preco[i];
-        }
-    }
-    console.log(">>>Maior Preço: " + maiorPreco);
-    console.log(">>>Menor Preço: " + menorPreco);
+    return [menorPreco, maiorPreco];
 }
+//console.log(obterMenorEMaiorPrecos(precos));
 
-//obterMenorEMaiorPrecos(precos);
+function obterPrecosDentroDoOrcamento(precos, valorDeOrcamentoInferior, valorDeOrcamentoSuperior) {
+    if (valorDeOrcamentoInferior <= valorDeOrcamentoSuperior) {
+        let precosDentroDoOrcamento = [];
 
+        for (let i = 0; i < precos.length; i++) {
+            if (precos[i] >= valorDeOrcamentoInferior && precos[i] <= valorDeOrcamentoSuperior) {
+                precosDentroDoOrcamento.push(precos[i]);
+            }
+        }
+        return precosDentroDoOrcamento;
+    }
+    else {
+        undefined;
+    }
+}
 var precosDosProdutos = [10, 7, 8, 25, 8, 9, 100, 99];
 var valorDeOrcamentoInferior = 9;
 var valorDeOrcamentoSuperior = 30;
-
-function obterPrecosDentroDoOrcamento(precos, valorDeOrcamentoInferior, valorDeOrcamentoSuperior) {
-    var precosDentroDoOrcamento = [];
-    for (let i = 0; i < precos.length; i++) {
-        if (precos[i] >= valorDeOrcamentoInferior && precos[i] <= valorDeOrcamentoSuperior) {
-            precosDentroDoOrcamento.push(precos[i]);
-        }
-    }
-    console.log(precosDentroDoOrcamento);
-}
-
-//obterPrecosDentroDoOrcamento(precos, valorDeOrcamentoInferior, valorDeOrcamentoSuperior);
-
-
-//var categorias = ["infantil", "alimentação"];
-//var valorDaCompra = 100;
+//console.log(obterPrecosDentroDoOrcamento(precos, valorDeOrcamentoInferior, valorDeOrcamentoSuperior));
 
 function  obterDescontoTotal(categoria, cupom) {
-    var desconto = 0.0;
+    let descontoTotal = 0;
 
-    if (cupom != 'CUPOM-INVALIDO') {
-        desconto += 0.10;
+    if (cupom.toUpperCase() != "CUPOM-INVALIDO") {
+        descontoTotal += 10;
     }
-    obterDescontoCategoria(categoria, valorDaCompra, desconto);
+    descontoTotal += obterDescontoCategoria(categoria);
+
+    return descontoTotal;
 }
 
-obterDescontoTotal('alimentação', 'NULABSSA');         // => 40
-obterDescontoTotal('alimentação', 'ALURANU');          // => 40
-obterDescontoTotal('infantil', 'ALURANU');             // => 25
-obterDescontoTotal('bebida', 'ALURANU');               // => 10
-obterDescontoTotal('bebida', 'CUPOM-INVALIDO');        // => 0
-obterDescontoTotal('alimentação', 'CUPOM-INVALIDO');   // => 30
+/* console.log(obterDescontoTotal('alimentação', 'NULABSSA'));         // => 40
+console.log(obterDescontoTotal('alimentação', 'ALURANU'));          // => 40
+console.log(obterDescontoTotal('infantil', 'ALURANU'));             // => 25
+console.log(obterDescontoTotal('bebida', 'ALURANU'));               // => 10
+console.log(obterDescontoTotal('bebida', 'CUPOM-INVALIDO'));        // => 0
+console.log(obterDescontoTotal('alimentação', 'CUPOM-INVALIDO'));   // => 30 */
+
+var categoriaDosProdutos = ['Infantil', 'Bebida', 'Alimentação', 'Bebida'];
+var valorDosProdutos = [50, 25, 30, 22];
+
+function calcularTotalDaCompraComDescontos(precos, categorias, cupom) {
+    let valorTotalDaCompra = 0;
+    
+    for (let i = 0; i < categorias.length; i++) {
+        let descontoTotal = obterDescontoTotal(categorias[i], cupom);
+        
+        valorTotalDaCompra += precos[i] - (precos[i] * (descontoTotal / 100));
+    }
+    return valorTotalDaCompra;
+}
+
+//console.log(calcularTotalDaCompraComDescontos(valorDosProdutos, categoriaDosProdutos, "ALURANU"));
+
+var nomeCompleto = "tiago lage payne de pádua";
+
+function capitalizarNomeCompleto(nome) {
+    let nomeSeparado = nome.split(" ");
+    let nomeCompletoCapitalizado = "";
+
+    for (let i = 0; i < nomeSeparado.length; i++) {
+        if (nomeSeparado[i].length >= 3) {
+            nomeCompletoCapitalizado += capitalizarNomes([nomeSeparado[i]]) + " ";
+        }
+        else {
+            nomeCompletoCapitalizado += nomeSeparado[i] + " ";
+        }
+    }
+    return nomeCompletoCapitalizado.trim();
+}
+//console.log(capitalizarNomeCompleto(nomeCompleto));
+
+function gerarCupomFiscal(produtos, precos, categorias, cupom) {
+    var subtotal = 0;
+    var cupomDesconto = 0;
+
+    console.log("Nome                Valor                 Desconto            Total");
+    for (let i =0; i < produtos.length; i++) {
+        var desconto = precos[i] * (obterDescontoCategoria(categorias[i]) / 100);
+        var valorPago = precos[i] - desconto;
+        subtotal += valorPago;
+        cupomDesconto += desconto;
+
+        console.log(`${produtos[i]}:        R$ ${precos[i].toFixed(2).replace(".", ",")}                ${desconto.toFixed(2).replace(".", ",")}            R$ ${valorPago.toFixed(2).replace(".", ",")}`);
+    }
+     
+
+    console.log(`Subtotal:                                                  R$ ${subtotal.toFixed(2).replace(".", ",")}`);
+    console.log(`Cupom de Desconto: ${cupom}                                R$ ${cupomDesconto.toFixed(2).replace(".", ",")}`);
+    console.log(`Total                                                      R$ ${calcularTotalDaCompraComDescontos(precos, categorias, cupom).toFixed(2).replace(".", ",")}`);
+}
+gerarCupomFiscal(['Serpentina', 'Refrigerante'], [20, 7], ['Infantil', 'Bebida'], 'NULABSSA');

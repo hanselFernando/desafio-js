@@ -120,8 +120,6 @@ function  obterDescontoTotal(categoria, cupom) {
 
     return descontoTotal;
 }
-
-/* console.log(obterDescontoTotal('alimentação', 'NULABSSA'));         // => 40
 console.log(obterDescontoTotal('alimentação', 'ALURANU'));          // => 40
 console.log(obterDescontoTotal('infantil', 'ALURANU'));             // => 25
 console.log(obterDescontoTotal('bebida', 'ALURANU'));               // => 10
